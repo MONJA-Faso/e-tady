@@ -1,0 +1,27 @@
+@startuml
+node "Serveur Web" {
+    [Conteneur Frontend (React)] 
+}
+
+node "Serveur Backend" {
+    [Conteneur Backend (Express)]
+    [Service d'authentification]
+    [Service de gestion des maisons]
+    [Service de réservation]
+}
+
+node "Serveur Base de données" {
+    [Conteneur Base de données (PostgreSQL)]
+}
+
+[Conteneur Frontend (React)] --> [Conteneur Backend (Express)] : HTTP Requests
+[Conteneur Backend (Express)] --> [Conteneur Base de données (PostgreSQL)] : SQL Queries
+[Conteneur Backend (Express)] --> [Service d'authentification]
+[Conteneur Backend (Express)] --> [Service de gestion des maisons]
+[Conteneur Backend (Express)] --> [Service de réservation]
+
+cloud "Internet" {
+    [Utilisateur] --> [Conteneur Frontend (React)]
+}
+
+@enduml

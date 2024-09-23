@@ -1,0 +1,14 @@
+@startuml
+actor Utilisateur
+participant "Frontend (React)" as Frontend
+participant "Backend (Express)" as Backend
+participant "Base de données (PostgreSQL)" as Database
+
+Utilisateur -> Frontend : Réserver une maison
+Frontend -> Backend : Envoyer demande de réservation
+Backend -> Backend : Valider demande
+Backend -> Database : Enregistrer réservation
+Database --> Backend : Confirmation
+Backend --> Frontend : Retour confirmation
+Frontend --> Utilisateur : Afficher confirmation
+@enduml

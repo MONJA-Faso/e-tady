@@ -1,0 +1,14 @@
+@startuml
+
+actor Utilisateur
+actor Propriétaire
+actor Administrateur
+
+Utilisateur -> (Consulter maison)
+Utilisateur -> (Réserver maison)
+Propriétaire -> (Ajouter maison)
+Propriétaire -> (Gérer maisons)
+Administrateur -> (Gérer utilisateurs)
+Administrateur -> (Gérer maisons)
+
+@enduml

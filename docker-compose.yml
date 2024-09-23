@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    
+
+  backend:
+    image: node:22-alpine
+    volumes:
+    - ./backend:/app
+    - ./config/config.json:/app/config.json
+    command: npx nodemon /app/index.js
+    build: ./backend
+    ports:
+    - "5000:5000"
+    environment:
+    - DB_HOST=db
+    - DB_PORT=5432
+    - DB_USER=monja
+    - DB_PASSWORD=monja
+    - DB_NAME=e_tady
+    depends_on:
+    - db
+    
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: monja
+      POSTGRES_PASSWORD: monja
+      POSTGRES_DB: e_tady
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+    
+
+volumes:
+  db_data:
+
+
+ 

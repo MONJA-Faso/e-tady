@@ -1,0 +1,23 @@
+@startuml
+package "Frontend" {
+  [React]
+}
+
+package "Backend" {
+  [Express]
+  [Service d'authentification]
+  [Service de réservation]
+  [Service de gestion des maisons]
+}
+
+package "Base de données" {
+  [PostgreSQL]
+}
+
+[API Gateway]  --> [Express]
+React --> [API Gateway]
+Express --> [PostgreSQL]
+Express --> [Service d'authentification]
+Express --> [Service de réservation]
+Express --> [Service de gestion des maisons]
+@enduml

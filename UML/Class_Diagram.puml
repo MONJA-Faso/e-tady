@@ -1,0 +1,48 @@
+@startuml
+class Maison {
+  -id : int
+  -adresse : string
+  -prix : float
+  -description : string
+  -disponibilité : bool
+  +ajouterMaison()
+  +modifierMaison()
+  +supprimerMaison()
+}
+
+class Utilisateur {
+  -id : int
+  -nom : string
+  -email : string
+  -motDePasse : string
+  +sInscrire()
+  +seConnecter()
+}
+
+class Propriétaire {
+  -listeMaisons : List<Maison>
+  +ajouterMaison()
+  +gérerMaisons()
+}
+
+class Réservation {
+  -id : int
+  -dateDébut : Date
+  -dateFin : Date
+  -maison : Maison
+  -utilisateur : Utilisateur
+  +effectuerRéservation()
+  +annulerRéservation()
+}
+
+class Administrateur {
+  +gérerUtilisateurs()
+  +gérerMaisons()
+}
+
+Utilisateur <|-- Propriétaire
+Utilisateur <|-- Administrateur
+Maison --> Réservation
+Utilisateur --> Réservation
+@enduml
+
